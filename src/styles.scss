@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/core/theming/all-theme';
+$candy-app-primary: mat-palette($mat-indigo);
+$candy-app-accent:  mat-palette($mat-orange);
+$candy-app-warn:    mat-palette($mat-red);
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+@include angular-material-theme($candy-app-theme);
+
+body {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+}
+
+section, form, div, p, input {
+  box-sizing: border-box;
+}

@@ -1,0 +1,41 @@
+<section class="login">
+  <form (ngSubmit)="onSubmit()">
+    <p>Log In</p>
+    <md-input-container>
+      <input mdInput
+             [(ngModel)]="user.login"
+             type="text"
+             id="login"
+             name="login"
+             required
+             placeholder="Login">
+    </md-input-container>
+    <!--<div *ngIf="loginForm.login.dirty && loginForm.login.errors"-->
+         <!--class="alert">-->
+      <!--<div [hidden]="!loginForm.login.errors.required">-->
+        <!--Поле не должно быть пустым!-->
+      <!--</div>-->
+    <!--</div>-->
+    <md-input-container>
+      <input mdInput
+             [(ngModel)]="user.password"
+             type="password"
+             name="password"
+             required
+             placeholder="Password">
+    </md-input-container>
+    <!--<div *ngIf="loginForm.password.dirty && loginForm.password.errors"-->
+         <!--class="alert">-->
+      <!--<div [hidden]="!loginForm.password.errors.required">-->
+        <!--Поле не должно быть пустым!-->
+      <!--</div>-->
+    <!--</div>-->
+    <div class="login-btn">
+      <button type="submit"
+              md-raised-button
+              color="primary">
+        Login
+      </button>
+    </div>
+  </form>
+</section>
