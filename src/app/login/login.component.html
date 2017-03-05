@@ -1,38 +1,51 @@
 <section class="login">
-  <form (ngSubmit)="onSubmit()">
+  <form #signinForm="ngForm"
+        name="loginForm"
+        (ngSubmit)="submit()"
+        novalidate>
     <p>Log In</p>
     <md-input-container>
       <input mdInput
-             [(ngModel)]="user.login"
              type="text"
-             id="login"
              name="login"
+             [(ngModel)]="user.name"
              required
-             placeholder="Login">
+             #login="ngModel"
+             placeholder="Login"
+             autocomplete="off">
+      <div *ngIf="login.errors && (login.dirty || login.touched)"
+           class="alert">
+        <div [hidden]="!login.errors.required">
+          Поле не должно быть пустым!
+        </div>
+        <div [hidden]="!login.errors.auth">
+          Login и/или пароль неверны!
+        </div>
+      </div>
     </md-input-container>
-    <!--<div *ngIf="loginForm.login.dirty && loginForm.login.errors"-->
-         <!--class="alert">-->
-      <!--<div [hidden]="!loginForm.login.errors.required">-->
-        <!--Поле не должно быть пустым!-->
-      <!--</div>-->
-    <!--</div>-->
     <md-input-container>
       <input mdInput
-             [(ngModel)]="user.password"
              type="password"
              name="password"
+             [(ngModel)]="user.password"
              required
-             placeholder="Password">
+             #password="ngModel"
+             placeholder="Password"
+             autocomplete="off">
+      <div *ngIf="password.errors && (password.dirty || password.touched)"
+           class="alert">
+        <div [hidden]="!password.errors.required">
+          Поле не должно быть пустым!
+        </div>
+        <div [hidden]="!password.errors.auth">
+          Login и/или пароль неверны!
+        </div>
+      </div>
     </md-input-container>
-    <!--<div *ngIf="loginForm.password.dirty && loginForm.password.errors"-->
-         <!--class="alert">-->
-      <!--<div [hidden]="!loginForm.password.errors.required">-->
-        <!--Поле не должно быть пустым!-->
-      <!--</div>-->
-    <!--</div>-->
     <div class="login-btn">
       <button type="submit"
               md-raised-button
+              [disabled]="!signinForm.valid"
               color="primary">
         Login
       </button>
