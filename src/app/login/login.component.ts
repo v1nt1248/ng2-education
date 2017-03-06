@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgForm, FormControl } from '@angular/forms';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _af: AngularFire,
+    private _router: Router,
     private _common: CommonService
   ) { }
 
@@ -37,6 +39,7 @@ export class LoginComponent implements OnInit {
     })
     .then((res) => {
       this._common.setUserData(res);
+      this._router.navigate(['main']);
     })
     .catch((err) => {
       console.error(err);

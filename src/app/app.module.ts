@@ -10,6 +10,7 @@ import { routes } from './routes';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { LoginComponent } from './login/login.component';
+import { GuardService } from './common/services/guard.service';
 import { CommonService } from './common/services/common.service';
 import { MainComponent } from './main/main.component';
 
@@ -35,7 +36,7 @@ export const firebaseConfig = {
     HttpModule,
     MaterialModule
   ],
-  providers: [CommonService],
+  providers: [GuardService, CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

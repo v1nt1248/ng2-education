@@ -1,4 +1,6 @@
+import { createLanguageService } from 'tslint/lib';
 import { Route } from '@angular/router';
+import { GuardService } from './common/services/guard.service';
 
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
@@ -18,7 +20,12 @@ export const routes: Route[] = [
       },
       {
         path: 'main',
-        component: MainComponent
+        component: MainComponent,
+        canActivate: [GuardService]
+      },
+      {
+        path: '**',
+        redirectTo: 'login'
       }
     ]
   }
