@@ -13,7 +13,9 @@ export class GuardService implements CanActivate{
     console.log(route);
     console.log(state);
     if (!!this._common.getUserData()) {
-      return true;
+      if (!!this._common.getUserData().uid) {
+        return true;
+      }
     }
 
     this._router.navigate(['login']);

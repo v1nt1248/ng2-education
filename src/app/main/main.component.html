@@ -1,3 +1,16 @@
-<p>
-  main works!
-</p>
+<section class="main">  
+  <md-toolbar color="primary">
+    <span>Контакты</span>
+    <span class="fill-space"></span>
+    <button md-icon-button
+      (click)="exit()">
+      <md-icon>exit_to_app</md-icon>
+    </button>
+  </md-toolbar>
+  <div class="main-body">
+    <div class="list">
+
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</section>
