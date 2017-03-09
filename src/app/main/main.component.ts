@@ -8,7 +8,10 @@ import { CommonService } from '../common/services/common.service';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
+
 export class MainComponent implements OnInit {
+  public selectContact: any;
+  public mode: string;
 
   constructor(
     private _af: AngularFire,
@@ -17,6 +20,8 @@ export class MainComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.selectContact = null;
+    this.mode = 'show';
   }
 
   exit(): void {

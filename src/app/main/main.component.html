@@ -9,8 +9,26 @@
   </md-toolbar>
   <div class="main-body">
     <div class="list">
-
+      <div class="bar">
+        <button md-button>
+          Создать
+        </button>
+      </div>
+      <div class="bar">
+      </div>
+      <div class="list-body">
+      </div>
     </div>
-    <router-outlet></router-outlet>
+    <div *ngIf="selectContact === null"
+      class="no-select">
+      <h3>Нет выбранных контактов ...</h3>
+    </div>
+    <router-outlet *ngIf="selectContact !== null"
+      class="content">
+    </router-outlet>
+    <router-outlet name="dialog"
+      *ngIf="mode !== 'show'"
+      class="contact-edit">
+    </router-outlet>
   </div>
 </section>

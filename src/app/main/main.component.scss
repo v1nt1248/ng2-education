@@ -26,6 +26,58 @@
       height: 100%;
       overflow-y: auto;
       border-right: 1px solid rgba(0, 0, 0, 0.12);
+
+      .bar {
+        position: relative;
+        width: 100%;
+        height: 56px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+        button {
+          padding: 0 16px;
+          background-color: #4CAF50;
+          color: #ffffff;
+
+          &:hover, &:focus {
+            background-color: darken(#4CAF50, 5%);
+          }
+        }
+      }
+
+      .list-body {
+        position: relative;
+        width: 100%;
+        height: calc(100% - 112px);
+        overflow-y: auto;
+      }
+    }
+
+    .content, .no-select {
+      position: relative;
+      width: calc(100% - 320px);
+      height: 100%;
+    }
+
+    .no-select {
+      h3 {
+        color: rgba(0,0,0,0.86);
+        text-align: center;
+        margin-top: 32px;
+      }
+    }
+
+    .contact-edit {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      background-color: rgba(0, 0, 0, 0.4);
     }
   }
 }
