@@ -14,6 +14,7 @@
 .c9/
 *.launch
 .settings/
+ng2-education.iml
 
 # IDE - VSCode
 .vscode/*
@@ -38,3 +39,4 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+
