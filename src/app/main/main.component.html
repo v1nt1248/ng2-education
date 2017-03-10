@@ -10,7 +10,8 @@
   <div class="main-body">
     <div class="list">
       <div class="bar">
-        <button md-button>
+        <button md-button
+          (click)="openEditForm('create')">
           Создать
         </button>
       </div>
@@ -19,16 +20,13 @@
       <div class="list-body">
       </div>
     </div>
-    <div *ngIf="selectContact === null"
-      class="no-select">
-      <h3>Нет выбранных контактов ...</h3>
-    </div>
-    <router-outlet *ngIf="selectContact !== null"
+
+    <router-outlet name="content"
       class="content">
     </router-outlet>
+    
     <router-outlet name="dialog"
-      *ngIf="mode !== 'show'"
-      class="contact-edit">
+      class="dialog">
     </router-outlet>
   </div>
 </section>

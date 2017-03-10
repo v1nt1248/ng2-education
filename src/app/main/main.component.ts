@@ -1,3 +1,4 @@
+import { timeout } from 'rxjs/operator/timeout';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFire } from 'angularfire2';
@@ -28,8 +29,14 @@ export class MainComponent implements OnInit {
     this._common.setUserData({auth: null, uid: null, provider: null});
     this._af.auth.logout()
       .then(res => {
-        this._router.navigate(['login']);
+        this._router.navigate(['/login']);
       });
+  }
+
+  openEditForm(mode: string): void {
+    console.log('Modal!');
+    // this.mode = mode;
+    this._router.navigate(['main', {outlets: {'dialog': ['edit']}}]);
   }
 
 }

@@ -62,22 +62,13 @@
       height: 100%;
     }
 
-    .no-select {
-      h3 {
-        color: rgba(0,0,0,0.86);
-        text-align: center;
-        margin-top: 32px;
-      }
-    }
-
-    .contact-edit {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 10;
-      background-color: rgba(0, 0, 0, 0.4);
+    .dialog {
+      position: absolute;
+      width: 640px;
+      height: 90%;
+      left: calc(50% - 320px);
+      top: 5%;
+      z-index: 5;
     }
   }
 }

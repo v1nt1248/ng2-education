@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     })
     .then((res) => {
       this._common.setUserData(res);
-      this._router.navigate(['main']);
+      this._router.navigate(['/main', {outlets: {'content': ['no-contact']}}]);
     })
     .catch((err) => {
       console.error(err);

@@ -16,6 +16,7 @@ import { CommonService } from './common/services/common.service';
 import { MainComponent } from './main/main.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactEditComponent } from './contact-edit/contact-edit.component';
+import { NoContactComponent } from './no-contact/no-contact.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ContactEditComponent } from './contact-edit/contact-edit.component';
     LoginComponent,
     MainComponent,
     ContactComponent,
-    ContactEditComponent
+    ContactEditComponent,
+    NoContactComponent
   ],
   imports: [
     BrowserModule,
