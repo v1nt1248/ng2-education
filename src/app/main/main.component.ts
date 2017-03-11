@@ -33,10 +33,8 @@ export class MainComponent implements OnInit {
       });
   }
 
-  openEditForm(mode: string): void {
-    console.log('Modal!');
-    // this.mode = mode;
-    this._router.navigate(['main', {outlets: {'dialog': ['edit']}}]);
+  openEditForm(id: string): void {
+    this._router.navigate(['main', {outlets: {'dialog': ['editor', id]}}]);
   }
 
 }

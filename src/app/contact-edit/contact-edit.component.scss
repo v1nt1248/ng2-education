@@ -16,11 +16,40 @@
   }
 
   md-card-header {
+    .title {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #1A237E;
+    }
+
     md-icon {
       position: absolute;
       top: 4px;
       right: 4px;
       cursor: pointer;
+    }
+  }
+
+  md-card-content {
+    position: relative;
+    height: calc(100% - 120px);
+    overflow-y: auto;
+  }
+
+  md-card-actions {
+    text-align: center;
+
+    button {
+      padding: 0 16px;
+      background-color: #4CAF50;
+      color: #ffffff;
+
+      &:hover, &:focus {
+        background-color: darken(#4CAF50, 5%);
+      }
     }
   }
 }

@@ -16,6 +16,9 @@ import { CommonService } from './common/services/common.service';
 import { MainComponent } from './main/main.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactEditComponent } from './contact-edit/contact-edit.component';
+import { ContactResolverService } from './contact-edit/contact-resolver.service';
+import { ContactEditService } from './contact-edit/contact-edit.service';
+// import { ContactValidatorService } from './contact-edit/contact-validator.service';
 import { NoContactComponent } from './no-contact/no-contact.component';
 
 
@@ -36,7 +39,7 @@ import { NoContactComponent } from './no-contact/no-contact.component';
     HttpModule,
     MaterialModule
   ],
-  providers: [GuardService, CommonService],
+  providers: [GuardService, CommonService, ContactResolverService, ContactEditService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
