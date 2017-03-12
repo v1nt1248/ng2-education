@@ -1,0 +1,19 @@
+.file-upload {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background-image: url(assets/icon_add.png);
+  background-position: 50% 50%;
+  background-size: cover;
+
+  input {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    opacity: 0;
+    cursor: pointer;
+  }
+}

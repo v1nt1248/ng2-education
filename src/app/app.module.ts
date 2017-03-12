@@ -20,6 +20,7 @@ import { ContactResolverService } from './contact-edit/contact-resolver.service'
 import { ContactEditService } from './contact-edit/contact-edit.service';
 import { ContactValidatorService } from './contact-edit/contact-validator.service';
 import { NoContactComponent } from './no-contact/no-contact.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { NoContactComponent } from './no-contact/no-contact.component';
     MainComponent,
     ContactComponent,
     ContactEditComponent,
-    NoContactComponent
+    NoContactComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,

@@ -48,6 +48,50 @@
         font-size: 11px;
       }
     }
+
+    form {
+      position: relative;
+      width: 100%;
+
+      .base-info {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+
+        .avatar {
+          position: relative;
+          width: 200px;
+          height: 200px;
+          background-color: #CFD8DC;
+          border-radius: 4px;
+          margin-right: 32px;
+
+          app-file-upload {
+            position: absolute;
+            bottom: 36px;
+            left: calc(50% - 16px);
+          }
+
+          .del {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            padding: 4px;
+            bottom: 4px;
+            left: calc(50% - 16px);
+            cursor: pointer;
+          }
+        }
+
+        .info {
+          position: relative;
+          width: calc(100% - 232px);
+        }
+      }
+    }
   }
 
   md-card-actions {

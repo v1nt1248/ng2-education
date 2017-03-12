@@ -11,7 +11,8 @@ declare namespace app {
     provider: number;
   }
 
-  type FieldErrorObj = {
+  type ErrorTextObj = {
+    name: string;
     limit?: boolean;
     text: string;
   }

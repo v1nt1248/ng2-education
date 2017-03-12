@@ -6,32 +6,86 @@
   <md-card-content>
     <form [formGroup]="contactForm">
       <div class="base-info">
-        <md-input-container>
-          <input mdInput
-            type="text"
-            placeholder="Имя"
-            formControlName="firstName"
-            autocomplete="off">
-          <div *ngIf="(contactForm.controls['firstName'].dirty || contactForm.controls['firstName'].touched) && contactForm.controls['firstName'].invalid"
-            class="error">
-            Errors!
+        <div class="avatar">
+          <app-file-upload md-button
+            *ngIf="contact.base.avatar === null"
+            size-img="200"
+            data-url="contact.dase.avatar"
+            error="">
+          </app-file-upload>
+          <div class="del"
+            *ngIf="contact.base.avatar !== null">
+            <md-icon>delete</md-icon>
           </div>
-        </md-input-container>
-        <md-input-container>
-          <input mdInput
-            type="text"
-            placeholder="Отчество"
-            formControlName="middleName"
-            autocomplete="off">
-          <div *ngIf="(contactForm.controls['middleName'].dirty || contactForm.controls['firstName'].touched) && contactForm.controls['middleName'].invalid"
-            class="error">
-            Errors!
-          </div>
-        </md-input-container>
+        </div>
+        <div class="info">
+          <md-input-container>
+            <input mdInput
+              type="text"
+              placeholder="Фамилия"
+              formControlName="lastName"
+              autocomplete="off">
+            <div *ngIf="(contactForm.controls['lastName'].dirty || contactForm.controls['lastName'].touched) && contactForm.controls['lastName'].invalid"
+              class="error">
+              {{contactFormErrors['lastName']}}
+            </div>
+          </md-input-container><br>
+          <md-input-container>
+            <input mdInput
+              type="text"
+              placeholder="Имя"
+              formControlName="firstName"
+              autocomplete="off">
+            <div *ngIf="(contactForm.controls['firstName'].dirty || contactForm.controls['firstName'].touched) && contactForm.controls['firstName'].invalid"
+              class="error">
+              {{contactFormErrors['firstName']}}
+            </div>
+          </md-input-container><br>
+          <md-input-container>
+            <input mdInput
+              type="text"
+              placeholder="Отчество"
+              formControlName="middleName"
+              autocomplete="off">
+            <div *ngIf="(contactForm.controls['middleName'].dirty || contactForm.controls['middleName'].touched) && contactForm.controls['middleName'].invalid"
+              class="error">
+              {{contactFormErrors['middleName']}}
+            </div>
+          </md-input-container><br>
+          <md-input-container>
+            <input mdInput
+              type="date"
+              placeholder="Дата рождения"
+              formControlName="birthDate"
+              autocomplete="off">
+          </md-input-container><br>
+          <md-input-container>
+            <input mdInput
+              type="text"
+              placeholder="Компания"
+              formControlName="company"
+              autocomplete="off">
+            <div *ngIf="(contactForm.controls['company'].dirty || contactForm.controls['company'].touched) && contactForm.controls['company'].invalid"
+              class="error">
+              {{contactFormErrors['company']}}
+            </div>
+          </md-input-container><br>
+          <md-input-container>
+            <input mdInput
+              type="text"
+              placeholder="Должность"
+              formControlName="position"
+              autocomplete="off">
+            <div *ngIf="(contactForm.controls['position'].dirty || contactForm.controls['position'].touched) && contactForm.controls['position'].invalid"
+              class="error">
+              {{contactFormErrors['position']}}
+            </div>
+          </md-input-container><br>
+        </div>
       </div>
 
     </form>
-    {{contact | json}}
+    <br><br>{{contact | json}}
   </md-card-content>
   <md-card-actions>
     <button md-button>Сохранить</button>
