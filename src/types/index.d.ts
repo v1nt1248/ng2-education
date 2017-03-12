@@ -11,6 +11,11 @@ declare namespace app {
     provider: number;
   }
 
+  type FieldErrorObj = {
+    limit?: boolean;
+    text: string;
+  }
+
   type PhoneType = 'мобильный' | 'рабочий' | 'домашний' | 'иной';
 
   type EmailType = 'личный' | 'рабочий' | 'иной';

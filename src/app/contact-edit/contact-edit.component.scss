@@ -37,6 +37,17 @@
     position: relative;
     height: calc(100% - 120px);
     overflow-y: auto;
+
+    md-input-container {
+      .error {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 22px;
+        color: #F44336;
+        font-size: 11px;
+      }
+    }
   }
 
   md-card-actions {

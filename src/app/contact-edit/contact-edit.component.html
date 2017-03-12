@@ -4,6 +4,33 @@
     <md-icon (click)="closeModal()">close</md-icon>
   </md-card-header>
   <md-card-content>
+    <form [formGroup]="contactForm">
+      <div class="base-info">
+        <md-input-container>
+          <input mdInput
+            type="text"
+            placeholder="Имя"
+            formControlName="firstName"
+            autocomplete="off">
+          <div *ngIf="(contactForm.controls['firstName'].dirty || contactForm.controls['firstName'].touched) && contactForm.controls['firstName'].invalid"
+            class="error">
+            Errors!
+          </div>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput
+            type="text"
+            placeholder="Отчество"
+            formControlName="middleName"
+            autocomplete="off">
+          <div *ngIf="(contactForm.controls['middleName'].dirty || contactForm.controls['firstName'].touched) && contactForm.controls['middleName'].invalid"
+            class="error">
+            Errors!
+          </div>
+        </md-input-container>
+      </div>
+
+    </form>
     {{contact | json}}
   </md-card-content>
   <md-card-actions>
