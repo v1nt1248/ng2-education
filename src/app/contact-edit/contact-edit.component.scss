@@ -36,7 +36,6 @@
   md-card-content {
     position: relative;
     height: calc(100% - 120px);
-    overflow-y: auto;
 
     md-input-container {
       .error {
@@ -56,6 +55,7 @@
       .base-info {
         position: relative;
         width: 100%;
+        margin-bottom: 16px;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -67,7 +67,8 @@
           height: 200px;
           background-color: #CFD8DC;
           border-radius: 4px;
-          margin-right: 32px;
+          margin-right: 48px;
+          margin-left: 16px;
           background-position: 50% 25%;
           background-repeat: no-repeat;
           background-size: cover;
@@ -99,8 +100,40 @@
 
         .info {
           position: relative;
-          width: calc(100% - 232px);
+          width: calc(100% - 264px);
         }
+      }
+
+      .add-info {
+        position: relative;
+        width: 100%;
+        text-align: center;
+
+        .communication {
+          position: relative;
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: flex-start;
+
+          md-input-container {
+            width: 40%;
+          }
+        }
+
+        md-input-container {
+          width: 90%;
+
+          .error {
+            top: 42px;
+          }
+        }
+      }
+
+      hr {
+        margin-top: 16px;
+        margin-bottom: 16px;
       }
     }
   }
@@ -115,6 +148,10 @@
 
       &:hover, &:focus {
         background-color: darken(#4CAF50, 5%);
+      }
+
+      &[disabled] {
+        cursor: not-allowed;
       }
     }
   }

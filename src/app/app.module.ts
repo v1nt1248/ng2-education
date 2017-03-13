@@ -21,6 +21,7 @@ import { ContactEditService } from './contact-edit/contact-edit.service';
 import { ContactValidatorService } from './contact-edit/contact-validator.service';
 import { NoContactComponent } from './no-contact/no-contact.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { ScrollableDirective } from './common/directives/scrollable.directive';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     ContactComponent,
     ContactEditComponent,
     NoContactComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    ScrollableDirective
   ],
   imports: [
     BrowserModule,

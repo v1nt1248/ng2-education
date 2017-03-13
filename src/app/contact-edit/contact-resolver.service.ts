@@ -14,39 +14,16 @@ export class ContactResolverService implements Resolve<app.Contact> {
       return Observable.from([
         {
           id: null,
-          base: {
-            avatar: null,
-            firstName: null,
-            middleName: null,
-            lastName: null,
-            birthDate: null,
-            company: null,
-            position: null
-          },
-          communication: {
-            phones: [
-              {
-                type: 'мобильный',
-                value: null
-              }
-            ],
-            emails: [
-              {
-                type: 'личный',
-                value: null
-              }
-            ]
-          },
-          place: [
-            {
-              city: null,
-              street: null,
-              house: null,
-              build: null,
-              room: null,
-              type: 'домашний'
-            }
-          ]
+          avatar: null,
+          firstName: null,
+          middleName: null,
+          lastName: null,
+          birthDate: null,
+          company: null,
+          position: null,
+          phone: null,
+          email: null,
+          place: null
         }
       ]);
     } else {

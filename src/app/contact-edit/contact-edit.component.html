@@ -6,15 +6,15 @@
   <md-card-content>
     <form [formGroup]="contactForm">
       <div class="base-info">
-        <div class="avatar" [style.background-image]="'url(' + contact.base.avatar + ')'">
+        <div class="avatar" [style.background-image]="'url(' + contact.avatar + ')'">
           <app-file-upload md-button
-            *ngIf="contact.base.avatar === null"
+            *ngIf="contact.avatar === null"
             [sizeImg]="200"
             (dataUrl)="getImg($event)"
             (error)="getError($event)">
           </app-file-upload>
           <div class="del"
-            *ngIf="contact.base.avatar !== null"
+            *ngIf="contact.avatar !== null"
             (click)="delAvatar()">
             <md-icon>delete</md-icon>
           </div>
@@ -34,7 +34,7 @@
           <md-input-container>
             <input mdInput
               type="text"
-              placeholder="Имя"
+              placeholder="Имя*"
               formControlName="firstName"
               autocomplete="off">
             <div *ngIf="(contactForm.controls['firstName'].dirty || contactForm.controls['firstName'].touched) && contactForm.controls['firstName'].invalid"
@@ -84,11 +84,50 @@
           </md-input-container><br>
         </div>
       </div>
-
+      <div class="add-info">
+        <div class="communication">
+          <md-input-container>
+            <input mdInput
+              type="text"
+              placeholder="Номер телефона"
+              formControlName="phone"
+              autocomplete="off">
+            <div *ngIf="(contactForm.controls['phone'].dirty || contactForm.controls['phone'].touched) && contactForm.controls['phone'].invalid"
+              class="error">
+              {{contactFormErrors['phone']}}
+            </div>
+          </md-input-container>
+          <md-input-container>
+            <input mdInput
+              type="text"
+              placeholder="Email"
+              formControlName="email"
+              autocomplete="off">
+            <div *ngIf="(contactForm.controls['email'].dirty || contactForm.controls['email'].touched) && contactForm.controls['email'].invalid"
+              class="error">
+              {{contactFormErrors['email']}}
+            </div>
+          </md-input-container>
+        </div>
+        <md-input-container>
+          <textarea mdInput
+            placeholder="Адрес"
+            minRows="3"
+            formControlName="place"
+            autocomplete="off"></textarea>
+          <div *ngIf="(contactForm.controls['place'].dirty || contactForm.controls['place'].touched) && contactForm.controls['place'].invalid"
+            class="error">
+            {{contactFormErrors['place']}}
+          </div>
+        </md-input-container>
+      </div>
     </form>
     <br><br>{{contact | json}}
   </md-card-content>
   <md-card-actions>
-    <button md-button>Сохранить</button>
+    <button md-button
+      [disabled]="!contactForm.valid">
+      Сохранить
+    </button>
   </md-card-actions>
 </md-card>

@@ -1,5 +1,12 @@
 declare namespace app {
 
+  type ScrollingData = {
+    childs: HTMLCollection;
+    qtChilds: number;
+    position: number;
+    delta: number;
+  }
+
   type Login = {
     name: string;
     password: string;
@@ -17,6 +24,7 @@ declare namespace app {
     text: string;
   }
 
+/*
   type PhoneType = 'мобильный' | 'рабочий' | 'домашний' | 'иной';
 
   type EmailType = 'личный' | 'рабочий' | 'иной';
@@ -48,15 +56,30 @@ declare namespace app {
   }
 
   type UserCommunication = {
-    phones: app.Communication[];
-    emails: app.Communication[];
+    phone: string;
+    email: string;
   }
 
   type Contact = {
     id: string;
     base: app.UserBase;
     communication: app.UserCommunication,
-    place: app.Address[];
+    place: string;
+  }
+*/
+
+  type Contact = {
+    id: string;
+    avatar: string;
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    birthDate: Date;
+    company: string;
+    position: string;
+    phone: string;
+    email: string;
+    place: string;
   }
 
 

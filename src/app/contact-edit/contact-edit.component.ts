@@ -36,8 +36,9 @@ export class ContactEditComponent implements OnInit {
       {name: 'required', text: 'Поле обязательно!'},
       {name: 'minlength', limit: true, text: 'символа минимум!'},
       {name: 'nameError',  text: 'Только буквы и пробел!'},
-      {name: 'stringError', text: `Буквы, цифры, пробел и символы "(_)-'`},
-      {name: 'emailError', text: 'Не валидный email!'}
+      {name: 'stringError', text: `Буквы, цифры, пробел и символы "(*_)-'`},
+      {name: 'emailError', text: 'Не валидный email!'},
+      {name: 'phoneError', text: `Цифры, пробел и символы :+(_)-`}
     ];
     this.contactFormErrors = {};
 
@@ -62,18 +63,21 @@ export class ContactEditComponent implements OnInit {
    */
   private buildForm(): void {
     this.contactForm = this._fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(2), this._validator.nameValidator]],
-      middleName: ['', [this._validator.nameValidator]],
-      lastName: ['', [this._validator.nameValidator]],
-      birthDate: [''],
-      company: ['', [this._validator.stringValidator]],
-      position: ['', [this._validator.stringValidator]]
+      firstName: [this.contact.firstName, [Validators.required, Validators.minLength(2), this._validator.nameValidator]],
+      middleName: [this.contact.middleName, [this._validator.nameValidator]],
+      lastName: [this.contact.lastName, [this._validator.nameValidator]],
+      birthDate: [this.contact.birthDate],
+      company: [this.contact.company, [this._validator.stringValidator]],
+      position: [this.contact.position, [this._validator.stringValidator]],
+      phone: [this.contact.phone, [this._validator.phoneValidator]],
+      email: [this.contact.email, [this._validator.emailValidator]],
+      place: [this.contact.place, [this._validator.stringValidator]]
     });
 
     this.contactForm.valueChanges
       .do(data => {
         for (const field of Object.keys(data)) {
-          this.contact.base[field] = data[field];
+          this.contact[field] = data[field];
         }
       })
       .subscribe(data => this.haveErrors(data));
@@ -103,14 +107,14 @@ export class ContactEditComponent implements OnInit {
    * удаление аватарки
    */
   delAvatar(): void {
-    this.contact.base.avatar = null;
+    this.contact.avatar = null;
   }
 
   /**
    * получение данных файла картинки
    */
   private getImg($event): void {
-    this.contact.base.avatar = $event;
+    this.contact.avatar = $event;
   }
   /**
    * получение информации об ошибке при чтении файла картинки
