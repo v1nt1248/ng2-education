@@ -68,21 +68,32 @@
           background-color: #CFD8DC;
           border-radius: 4px;
           margin-right: 32px;
+          background-position: 50% 25%;
+          background-repeat: no-repeat;
+          background-size: cover;
 
           app-file-upload {
             position: absolute;
-            bottom: 36px;
+            width: 32px;
+            height: 32px;
+            bottom: -16px;
             left: calc(50% - 16px);
+            background-color: #CFD8DC;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
           }
 
           .del {
             position: absolute;
             width: 32px;
             height: 32px;
-            padding: 4px;
-            bottom: 4px;
+            padding: 2px;
+            bottom: -16px;
             left: calc(50% - 16px);
             cursor: pointer;
+            background-color: #CFD8DC;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
           }
         }
 

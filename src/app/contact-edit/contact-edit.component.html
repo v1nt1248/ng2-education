@@ -6,15 +6,16 @@
   <md-card-content>
     <form [formGroup]="contactForm">
       <div class="base-info">
-        <div class="avatar">
+        <div class="avatar" [style.background-image]="'url(' + contact.base.avatar + ')'">
           <app-file-upload md-button
             *ngIf="contact.base.avatar === null"
-            size-img="200"
-            data-url="contact.dase.avatar"
-            error="">
+            [sizeImg]="200"
+            (dataUrl)="getImg($event)"
+            (error)="getError($event)">
           </app-file-upload>
           <div class="del"
-            *ngIf="contact.base.avatar !== null">
+            *ngIf="contact.base.avatar !== null"
+            (click)="delAvatar()">
             <md-icon>delete</md-icon>
           </div>
         </div>

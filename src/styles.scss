@@ -19,3 +19,31 @@ body {
 section, form, div, p, input {
   box-sizing: border-box;
 }
+
+.errorMsg {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background-color: #EF9A9A !important;
+  z-index: 100;
+
+  span {
+    color: #B71C1C;
+  }
+}
+
+.successMsg {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background-color: #A5D6A7 !important;
+  z-index: 100;
+
+  span {
+    color: #1B5E20;
+  }
+}
+
+.cdk-visually-hidden {
+  opacity: 0;
+}

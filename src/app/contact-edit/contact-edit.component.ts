@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { MdSnackBar } from '@angular/material'
 import { ContactValidatorService } from './contact-validator.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/pluck';
@@ -24,6 +25,7 @@ export class ContactEditComponent implements OnInit {
     private _router: Router,
     private _route: ActivatedRoute,
     private _fb: FormBuilder,
+    private _toast: MdSnackBar,
     private _validator: ContactValidatorService
   ) {
     this.contact$ = this._route.data.pluck('contact');
@@ -95,6 +97,26 @@ export class ContactEditComponent implements OnInit {
         this.contactFormErrors[field] = errorsFieldText;
       }
     }
+  }
+
+  /**
+   * удаление аватарки
+   */
+  delAvatar(): void {
+    this.contact.base.avatar = null;
+  }
+
+  /**
+   * получение данных файла картинки
+   */
+  private getImg($event): void {
+    this.contact.base.avatar = $event;
+  }
+  /**
+   * получение информации об ошибке при чтении файла картинки
+   */
+  private getError($event): void {
+    this._toast.open($event, null, {duration: 1500, extraClasses: ['errorMsg']});
   }
 
 
