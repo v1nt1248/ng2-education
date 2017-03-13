@@ -122,11 +122,11 @@
         </md-input-container>
       </div>
     </form>
-    <br><br>{{contact | json}}
   </md-card-content>
   <md-card-actions>
     <button md-button
-      [disabled]="!contactForm.valid">
+      [disabled]="!contactForm.valid"
+      (click)="saveContact()">
       Сохранить
     </button>
   </md-card-actions>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2'
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { MdSnackBar } from '@angular/material'
+import { MdSnackBar } from '@angular/material';
 import { ContactValidatorService } from './contact-validator.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/pluck';
@@ -20,8 +21,10 @@ export class ContactEditComponent implements OnInit {
   private contactForm: FormGroup;
   private contactFormErrors: {[key: string]: string};
   private baseErrorsText: app.ErrorTextObj[];
+  private contactList: FirebaseListObservable<app.Contact[]>;
 
   constructor(
+    private _af: AngularFire,
     private _router: Router,
     private _route: ActivatedRoute,
     private _fb: FormBuilder,
@@ -29,6 +32,7 @@ export class ContactEditComponent implements OnInit {
     private _validator: ContactValidatorService
   ) {
     this.contact$ = this._route.data.pluck('contact');
+    this.contactList = this._af.database.list('/contacts');
   }
 
   ngOnInit() {
@@ -121,6 +125,17 @@ export class ContactEditComponent implements OnInit {
    */
   private getError($event): void {
     this._toast.open($event, null, {duration: 1500, extraClasses: ['errorMsg']});
+  }
+
+  /**
+   * сохранение контакта
+   */
+  saveContact() {
+    console.log(JSON.stringify(this.contact, null, 2));
+    if (this.contact.id === null) {
+      this.contact.id = new Date().getTime() + '';
+      this.contactList.push(this.contact);
+    }
   }
 
 

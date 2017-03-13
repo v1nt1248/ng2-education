@@ -9,13 +9,13 @@ export class ContactValidatorService {
   public nameValidator(item: FormControl): {[key: string]: boolean} {
     const value = item.value || null;
     const valid = (/^[a-zа-я ё]*$/i).test(value);
-    return valid ? null : {nameError: true};
+    return (valid || value === null) ? null : {nameError: true};
   }
 
   public stringValidator(item: FormControl): {[key: string]: boolean} {
     const value = item.value || null;
     const valid = (/^[a-zа-я ё0-9'"(*_)-]*$/i).test(value);
-    return valid ? null : {stringError: true};
+    return (valid || value === null) ? null : {stringError: true};
   }
 
   public emailValidator(item: FormControl): {[key: string]: boolean} {
@@ -27,7 +27,7 @@ export class ContactValidatorService {
   public phoneValidator(item: FormControl): {[key: string]: boolean} {
     const value = item.value || null;
     const valid = (/^[0-9 :+(_)-]*$/i).test(value);
-    return valid ? null : {phoneError: true};
+    return (valid || value === null) ? null : {phoneError: true};
   }
 
 }
