@@ -69,17 +69,17 @@ declare namespace app {
 */
 
   type Contact = {
-    id: string;
-    avatar: string;
+    id?: string;
+    avatar?: string;
     firstName: string;
-    middleName: string;
-    lastName: string;
-    birthDate: Date;
-    company: string;
-    position: string;
-    phone: string;
-    email: string;
-    place: string;
+    middleName?: string;
+    lastName?: string;
+    birthDate?: Date;
+    company?: string;
+    position?: string;
+    phone?: string;
+    email?: string;
+    place?: string;
   }
 
 

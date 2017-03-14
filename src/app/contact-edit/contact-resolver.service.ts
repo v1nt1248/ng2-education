@@ -10,6 +10,7 @@ export class ContactResolverService implements Resolve<app.Contact> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<app.Contact> {
     const id = route.params['id'];
+    console.log(`id: ${id}`);
     if (id === 'new') {
       return Observable.from([
         {

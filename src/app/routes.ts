@@ -8,6 +8,7 @@ import { NoContactComponent } from './no-contact/no-contact.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactEditComponent } from './contact-edit/contact-edit.component';
 import { ContactResolverService } from './contact-edit/contact-resolver.service';
+import { MainResolverService } from './main/main-resolver.service';
 
 export const routes: Route[] = [
   {
@@ -25,6 +26,9 @@ export const routes: Route[] = [
       {
         path: 'main',
         component: MainComponent,
+        // resolve: {
+        //   list: MainResolverService
+        // },
         canActivate: [GuardService],
         children: [
           {
@@ -43,6 +47,9 @@ export const routes: Route[] = [
             path: 'contact/:id',
             outlet: 'content',
             component: ContactComponent,
+            resolve: {
+              contact: ContactResolverService
+            },
             canActivate: [GuardService]
           },
           {

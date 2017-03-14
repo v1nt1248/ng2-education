@@ -9,7 +9,7 @@
   </md-toolbar>
   <div class="main-body">
     <div class="list">
-      <div class="bar">
+      <div class="bar bar-btn">
         <button md-button
           (click)="openEditForm('new')">
           Создать
@@ -17,7 +17,28 @@
       </div>
       <div class="bar">
       </div>
-      <div class="list-body">
+      <div class="list-body" appScrollable="30">
+        <div *ngFor="let contact of contacts$ | async"
+          class="contact-item"
+          [ngClass]="{'selContact': contact.id === selectContactId}"
+          (click)="select(contact)">
+          <div *ngIf="!!contact.avatar" 
+            class="avatar"
+            [style.background-image]="'url(' + contact.avatar + ')'">
+          </div>
+          <div *ngIf="!contact.avatar" 
+            class="no-avatar">
+            {{contact.firstName[0]}}
+          </div>
+          <div class="info">
+            <div class="info01">
+              {{contact.firstName}} {{contact.middleName}} {{contact.lastName}}
+            </div>
+            <div class="info02">
+              {{contact.email}}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

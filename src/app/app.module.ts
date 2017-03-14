@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { GuardService } from './common/services/guard.service';
 import { CommonService } from './common/services/common.service';
 import { MainComponent } from './main/main.component';
+// import { MainResolverService } from './main/main-resolver.service';
 import { ContactComponent } from './contact/contact.component';
 import { ContactEditComponent } from './contact-edit/contact-edit.component';
 import { ContactResolverService } from './contact-edit/contact-resolver.service';

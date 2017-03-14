@@ -14,7 +14,7 @@ export class ContactValidatorService {
 
   public stringValidator(item: FormControl): {[key: string]: boolean} {
     const value = item.value || null;
-    const valid = (/^[a-zа-я ё0-9'"(*_)-]*$/i).test(value);
+    const valid = (/^[a-zа-я ё0-9'"(*_)-]|\s*$/i).test(value);
     return (valid || value === null) ? null : {stringError: true};
   }
 

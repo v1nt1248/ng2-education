@@ -1,8 +1,11 @@
 import { timeout } from 'rxjs/operator/timeout';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AngularFire } from 'angularfire2';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Observable } from 'rxjs/Observable';
 import { CommonService } from '../common/services/common.service';
+import 'rxjs/add/operator/pluck';
+import 'rxjs/add/operator/do';
 
 @Component({
   selector: 'app-main',
@@ -11,18 +14,32 @@ import { CommonService } from '../common/services/common.service';
 })
 
 export class MainComponent implements OnInit {
-  public selectContact: any;
-  public mode: string;
+  private contacts$: FirebaseListObservable<app.Contact[]>;
+  private contacts: app.Contact[];
+  private selectContactId: string;
+  private mode: string;
 
   constructor(
     private _af: AngularFire,
     private _router: Router,
+    private _route: ActivatedRoute,
     private _common: CommonService
-  ) { }
+  ) {
+    this.contacts$ = this._af.database.list('/contacts');
+  }
 
   ngOnInit() {
-    this.selectContact = null;
+    this.selectContactId = null;
     this.mode = 'show';
+    this.contacts$.subscribe(val => {
+      this.contacts = val;
+      console.log(this.contacts);
+    });
+  }
+
+  select(contact: app.Contact): void {
+    this.selectContactId = contact.id;
+    this._router.navigate(['main', {outlets: {'content': ['contact', this.selectContactId]}}]);
   }
 
   exit(): void {

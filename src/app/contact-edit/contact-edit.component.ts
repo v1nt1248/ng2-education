@@ -131,10 +131,26 @@ export class ContactEditComponent implements OnInit {
    * сохранение контакта
    */
   saveContact() {
-    console.log(JSON.stringify(this.contact, null, 2));
+    // console.log(JSON.stringify(this.contact, null, 2));
     if (this.contact.id === null) {
       this.contact.id = new Date().getTime() + '';
-      this.contactList.push(this.contact);
+      this.contactList.push(this.contact)
+        .then(res => {
+          // console.log(res);
+          const newId = res.path.o[1];
+          this.contact.id = newId;
+          this.contactList.update(newId, this.contact);
+        })
+        .then(res => {
+          const notif = this._toast.open('Контакт сохранен!', null, {duration: 1500, extraClasses: ['successMsg']});
+          notif.afterDismissed().subscribe(() => {
+            this.closeModal();
+          });
+        })
+        .catch(err => {
+          console.error(err);
+          this._toast.open('Ошибка при записи контакта! Попробуйте позже.', null, {duration: 1500, extraClasses: ['errorMsg']});
+        });
     }
   }
 
