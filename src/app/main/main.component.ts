@@ -51,7 +51,7 @@ export class MainComponent implements OnInit {
   }
 
   openEditForm(id: string): void {
-    this._router.navigate(['main', {outlets: {'dialog': ['editor', id]}}]);
+    this._router.navigate(['main', {outlets: {'dialog': ['editor', id], 'content': ['no-contact']}}]);
   }
 
 }

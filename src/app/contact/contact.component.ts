@@ -18,13 +18,14 @@ export class ContactComponent implements OnInit {
     private _route: ActivatedRoute
   ) {
     this.contact$ = this._route.data.pluck('contact');
+    console.log(this.contact$);
   }
 
   ngOnInit() {
     this.contact$.subscribe(val => {
       this.contact = val;
       console.log(this.contact);
-    })
+    });
   }
 
 }

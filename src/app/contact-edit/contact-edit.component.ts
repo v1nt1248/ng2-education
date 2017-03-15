@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2'
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MdSnackBar } from '@angular/material';
 import { ContactValidatorService } from './contact-validator.service';
