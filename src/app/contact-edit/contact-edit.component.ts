@@ -59,7 +59,8 @@ export class ContactEditComponent implements OnInit {
    * закрытие модального окна
    */
   private closeModal(): void {
-    this._router.navigate(['main', {outlets: {'dialog': null}}]);
+    this._router.navigate(['main', {outlets: {'dialog': null, 'content': ['contact', this.contact.id]}}])
+      .then(() => window.location.reload());
   }
 
   /**
@@ -151,6 +152,19 @@ export class ContactEditComponent implements OnInit {
           console.error(err);
           this._toast.open('Ошибка при записи контакта! Попробуйте позже.', null, {duration: 1500, extraClasses: ['errorMsg']});
         });
+    } else {
+      this.contactList.update(this.contact.id, this.contact)
+        .then(res => {
+          const notif = this._toast.open('Контакт сохранен!', null, {duration: 1500, extraClasses: ['successMsg']});
+          notif.afterDismissed().subscribe(() => {
+            this.closeModal();
+          });
+        })
+        .catch(err => {
+          console.error(err);
+          this._toast.open('Ошибка при записи контакта! Попробуйте позже.', null, {duration: 1500, extraClasses: ['errorMsg']});
+        });
+
     }
   }
 

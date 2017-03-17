@@ -28,4 +28,8 @@ export class ContactComponent implements OnInit {
     });
   }
 
+  private editContact(): void {
+    this._router.navigate(['main', {outlets: {'dialog': ['editor', this.contact.id]}}]);
+  }
+
 }

@@ -1,3 +1,66 @@
-<p>
-  contact works!
-</p>
+<section class="contact-data">
+  <div class="contact-data-btns">
+    <button md-button class="del">
+      <md-icon>delete</md-icon>
+    </button>
+    <button md-button
+      (click)="editContact()"
+      class="edit">
+      <md-icon>edit</md-icon>
+    </button>
+  </div>
+  <div *ngIf="!!contact.avatar"
+    [style.background-image]="'url(' + contact.avatar + ')'"
+    class="avatar">
+  </div>
+  <div *ngIf="!contact.avatar"
+    class="no-avatar">
+    {{contact.firstName.substr(0, 2)}}
+  </div>
+
+  <div class="field-wrap">
+    <label>Имя:</label>
+    <p>{{contact.firstName}}</p>
+  </div>
+
+  <div class="field-wrap">
+    <label>Отчество:</label>
+    <p>{{contact.middleName}}</p>
+  </div>
+
+   <div class="field-wrap">
+    <label>Фамилия:</label>
+    <p>{{contact.lastName}}</p>
+  </div>
+
+  <div class="field-wrap">
+    <label>Дата рождения:</label>
+    <p>{{contact.birthDate | date:"d.MM.y"}}</p>
+  </div>
+
+  <div class="field-wrap">
+    <label>Компания:</label>
+    <p>{{contact.company}}</p>
+  </div>
+
+  <div class="field-wrap">
+    <label>Должность:</label>
+    <p>{{contact.position}}</p>
+  </div>
+
+  <div class="field-wrap">
+    <label>Телефон:</label>
+    <p>{{contact.phone}}</p>
+  </div>
+
+  <div class="field-wrap">
+    <label>Email:</label>
+    <p>{{contact.email}}</p>
+  </div>
+
+  <div class="field-wrap">
+    <label>Адрес:</label>
+    <p>{{contact.place}}</p>
+  </div>
+
+</section>
