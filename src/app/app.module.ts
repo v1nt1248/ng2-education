@@ -14,7 +14,6 @@ import { LoginComponent } from './login/login.component';
 import { GuardService } from './common/services/guard.service';
 import { CommonService } from './common/services/common.service';
 import { MainComponent } from './main/main.component';
-// import { MainResolverService } from './main/main-resolver.service';
 import { ContactComponent } from './contact/contact.component';
 import { ContactEditComponent } from './contact-edit/contact-edit.component';
 import { ContactResolverService } from './contact-edit/contact-resolver.service';
@@ -23,6 +22,7 @@ import { ContactValidatorService } from './contact-edit/contact-validator.servic
 import { NoContactComponent } from './no-contact/no-contact.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { ScrollableDirective } from './common/directives/scrollable.directive';
+import { NamePipe } from './common/pipes/name.pipe';
 
 
 @NgModule({
@@ -34,7 +34,8 @@ import { ScrollableDirective } from './common/directives/scrollable.directive';
     ContactEditComponent,
     NoContactComponent,
     FileUploadComponent,
-    ScrollableDirective
+    ScrollableDirective,
+    NamePipe
   ],
   imports: [
     BrowserModule,

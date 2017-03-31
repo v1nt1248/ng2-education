@@ -16,8 +16,10 @@ import 'rxjs/add/operator/do';
 export class MainComponent implements OnInit {
   private contacts$: FirebaseListObservable<app.Contact[]>;
   private contacts: app.Contact[];
+  private contactId$: Observable<app.Contact>;
   private selectContactId: string;
   private mode: string;
+  private filter: string;
 
   constructor(
     private _af: AngularFire,
@@ -26,15 +28,25 @@ export class MainComponent implements OnInit {
     private _common: CommonService
   ) {
     this.contacts$ = this._af.database.list('/contacts');
+    this.contactId$ = this._common.emitEvent();
   }
 
   ngOnInit() {
     this.selectContactId = null;
     this.mode = 'show';
+    this.filter = '';
     this.contacts$.subscribe(val => {
       this.contacts = val;
-      console.log(this.contacts);
+      // console.log(this.contacts);
     });
+    this.contactId$.subscribe(val => {
+      // console.log(`Model close. Contact: ${JSON.stringify(val, null, 2)}`);
+      this.select(val);
+    });
+  }
+
+  enterQuery(event: KeyboardEvent): void {
+    this.filter = (event.target as HTMLInputElement).value;
   }
 
   select(contact: app.Contact): void {

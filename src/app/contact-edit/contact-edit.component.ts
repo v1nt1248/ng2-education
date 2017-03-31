@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MdSnackBar } from '@angular/material';
+import { CommonService } from './../common/services/common.service';
 import { ContactValidatorService } from './contact-validator.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/pluck';
@@ -29,6 +30,7 @@ export class ContactEditComponent implements OnInit {
     private _route: ActivatedRoute,
     private _fb: FormBuilder,
     private _toast: MdSnackBar,
+    private _common: CommonService,
     private _validator: ContactValidatorService
   ) {
     this.contact$ = this._route.data.pluck('contact');
@@ -50,17 +52,20 @@ export class ContactEditComponent implements OnInit {
       this.contact = val;
       this.title = (!!this.contact.id) ? 'Редактирование контакта' : 'Создание нового контакта';
     });
-    console.log(this.contact);
+    // console.log(this.contact);
 
     this.buildForm();
   }
 
   /**
    * закрытие модального окна
+   * @param isSaved {boolean} - true, если окно закрывается после сохранения
    */
-  private closeModal(): void {
-    this._router.navigate(['main', {outlets: {'dialog': null, 'content': ['contact', this.contact.id]}}])
-      .then(() => window.location.reload());
+  private closeModal(isSaved: boolean): void {
+    if (isSaved) {
+      this._common.prepareEvent(this.contact);
+    }
+    this._router.navigate(['main', {outlets: {'dialog': null}}]);
   }
 
   /**
@@ -145,7 +150,7 @@ export class ContactEditComponent implements OnInit {
         .then(res => {
           const notif = this._toast.open('Контакт сохранен!', null, {duration: 1500, extraClasses: ['successMsg']});
           notif.afterDismissed().subscribe(() => {
-            this.closeModal();
+            this.closeModal(true);
           });
         })
         .catch(err => {
@@ -157,7 +162,7 @@ export class ContactEditComponent implements OnInit {
         .then(res => {
           const notif = this._toast.open('Контакт сохранен!', null, {duration: 1500, extraClasses: ['successMsg']});
           notif.afterDismissed().subscribe(() => {
-            this.closeModal();
+            this.closeModal(true);
           });
         })
         .catch(err => {
