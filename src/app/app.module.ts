@@ -14,7 +14,9 @@ import { LoginComponent } from './login/login.component';
 import { GuardService } from './common/services/guard.service';
 import { CommonService } from './common/services/common.service';
 import { MainComponent } from './main/main.component';
-import { ContactComponent } from './contact/contact.component';
+import { ConfirmDialogComponent } from './contact/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogService } from './contact/confirm-dialog.service';
+import { ContactComponent} from './contact/contact.component';
 import { ContactEditComponent } from './contact-edit/contact-edit.component';
 import { ContactResolverService } from './contact-edit/contact-resolver.service';
 import { ContactEditService } from './contact-edit/contact-edit.service';
@@ -24,12 +26,12 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { ScrollableDirective } from './common/directives/scrollable.directive';
 import { NamePipe } from './common/pipes/name.pipe';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MainComponent,
+    ConfirmDialogComponent,
     ContactComponent,
     ContactEditComponent,
     NoContactComponent,
@@ -46,7 +48,10 @@ import { NamePipe } from './common/pipes/name.pipe';
     HttpModule,
     MaterialModule
   ],
-  providers: [GuardService, CommonService, ContactResolverService, ContactEditService, ContactValidatorService],
+  providers: [GuardService, CommonService, ConfirmDialogService, ContactResolverService, ContactEditService, ContactValidatorService],
+  entryComponents: [
+    ConfirmDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { CommonService } from '../common/services/common.service';
-import { MdDialog } from '@angular/material';
+import { ConfirmDialogService } from './confirm-dialog.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/do';
@@ -15,16 +16,19 @@ export class ContactComponent implements OnInit {
   private contact$: Observable<app.Contact>;
   private contact: app.Contact;
   private contactEdited$: Observable<app.Contact>
+  private contactList$: FirebaseListObservable<app.Contact[]>
 
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
+    private _af: AngularFire,
     private _common: CommonService,
-    private _dialog: MdDialog
+    private _dialog: ConfirmDialogService
   ) {
     this.contact$ = this._route.data.pluck('contact');
     // console.log(this.contact$);
     this.contactEdited$ = this._common.emitEvent();
+    this.contactList$ = this._af.database.list('/contacts');
   }
 
   ngOnInit() {
@@ -43,7 +47,15 @@ export class ContactComponent implements OnInit {
   }
 
   private delContact(): void {
-
+    this._dialog
+      .confirm()
+      .subscribe(res => {
+        if (res) {
+          this.contactList$.remove(this.contact.id);
+          this._router.navigate(['main', {outlets: {'content': ['no-contact']}}]);
+        }
+      });
   }
 
 }
+

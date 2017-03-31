@@ -1,0 +1,13 @@
+<div md-dialog-content>Вы действительно хотите удалить контакт?</div>
+<div md-dialog-actions>
+  <button md-button
+          class="confirm"
+          (click)="_dialogRef.close(true)">
+    Да
+  </button>
+  <button md-button
+          class="cancel"
+          (click)="_dialogRef.close(false)">
+    Нет
+  </button>
+</div>

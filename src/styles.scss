@@ -6,6 +6,8 @@ $candy-app-warn:    mat-palette($mat-red);
 $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
 @include angular-material-theme($candy-app-theme);
 
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+
 body {
   position: fixed;
   top: 0;
@@ -46,4 +48,40 @@ section, form, div, p, input {
 
 .cdk-visually-hidden {
   opacity: 0;
+}
+
+md-dialog-container {
+  .mat-dialog-content {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+
+  .mat-dialog-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .confirm {
+      background-color: #4CAF50;
+      color: #ffffff;
+      cursor: pointer;
+
+      &.hover, &.focus {
+        background-color: darken(#4CAF50, 10%);
+      }
+    }
+
+    .cancel {
+      background-color: #F44336;
+      color: #ffffff;
+      cursor: pointer;
+
+      &.hover, &.focus {
+        background-color: darken(#F44336, 10%);
+      }
+    }
+  }
 }
