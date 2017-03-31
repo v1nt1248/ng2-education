@@ -43,7 +43,7 @@ export class ContactComponent implements OnInit {
   }
 
   private delContact(): void {
-    
+
   }
 
 }

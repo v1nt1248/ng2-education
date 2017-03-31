@@ -29,7 +29,7 @@
         <div *ngFor="let contact of contacts$ | async | name:filter"
           class="contact-item"
           [ngClass]="{'selContact': contact.id === selectContactId}"
-          (click)="select(contact.id)">
+          (click)="select(contact)">
           <div *ngIf="!!contact.avatar"
             class="avatar"
             [style.background-image]="'url(' + contact.avatar + ')'">
