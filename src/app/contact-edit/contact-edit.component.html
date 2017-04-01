@@ -8,13 +8,13 @@
       <div class="base-info">
         <div class="avatar" [style.background-image]="'url(' + contact.avatar + ')'">
           <app-file-upload md-button
-            *ngIf="contact.avatar === null"
+            *ngIf="!contact.avatar"
             [sizeImg]="200"
             (dataUrl)="getImg($event)"
             (error)="getError($event)">
           </app-file-upload>
           <div class="del"
-            *ngIf="contact.avatar !== null"
+            *ngIf="!!contact.avatar"
             (click)="delAvatar()">
             <md-icon>delete</md-icon>
           </div>

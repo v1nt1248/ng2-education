@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   public submit(): void {
+    this._common.spinnerStart();
     this._af.auth.login({
       email: this.user.name,
       password: this.user.password,
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit {
       console.error(err);
       this.currentForm.form.controls['login'].setErrors({'auth': true});
       this.currentForm.form.controls['password'].setErrors({'auth': true});
+      this._common.spinnerStop();
     });
   }
 

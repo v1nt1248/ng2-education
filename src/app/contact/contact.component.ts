@@ -35,10 +35,12 @@ export class ContactComponent implements OnInit {
     this.contact$.subscribe(val => {
       this.contact = val;
       // console.log(this.contact);
+      this._common.spinnerStop();
     });
     this.contactEdited$.subscribe(val => {
       this.contact = val;
       // console.log(`Edited contact!`);
+      this._common.spinnerStop();
     })
   }
 

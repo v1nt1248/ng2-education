@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Sanitizer } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MdSnackBar } from '@angular/material';
 import { CommonService } from './../common/services/common.service';
 import { ContactValidatorService } from './contact-validator.service';
@@ -25,6 +25,7 @@ export class ContactEditComponent implements OnInit {
   private contactList: FirebaseListObservable<app.Contact[]>;
 
   constructor(
+    private _sanitizer: Sanitizer,
     private _af: AngularFire,
     private _router: Router,
     private _route: ActivatedRoute,
@@ -138,6 +139,7 @@ export class ContactEditComponent implements OnInit {
    */
   saveContact() {
     // console.log(JSON.stringify(this.contact, null, 2));
+    this._common.spinnerStart();
     if (this.contact.id === null) {
       this.contact.id = new Date().getTime() + '';
       this.contactList.push(this.contact)
@@ -149,25 +151,31 @@ export class ContactEditComponent implements OnInit {
         })
         .then(res => {
           const notif = this._toast.open('Контакт сохранен!', null, {duration: 1500, extraClasses: ['successMsg']});
-          notif.afterDismissed().subscribe(() => {
-            this.closeModal(true);
-          });
+          this._common.spinnerStop();
+          this.closeModal(true);
+          // notif.afterDismissed().subscribe(() => {
+          //   this.closeModal(true);
+          // });
         })
         .catch(err => {
           console.error(err);
           this._toast.open('Ошибка при записи контакта! Попробуйте позже.', null, {duration: 1500, extraClasses: ['errorMsg']});
+          this._common.spinnerStop();
         });
     } else {
       this.contactList.update(this.contact.id, this.contact)
         .then(res => {
           const notif = this._toast.open('Контакт сохранен!', null, {duration: 1500, extraClasses: ['successMsg']});
-          notif.afterDismissed().subscribe(() => {
-            this.closeModal(true);
-          });
+          this._common.spinnerStop();
+          this.closeModal(true);
+          // notif.afterDismissed().subscribe(() => {
+          //   this.closeModal(true);
+          // });
         })
         .catch(err => {
           console.error(err);
           this._toast.open('Ошибка при записи контакта! Попробуйте позже.', null, {duration: 1500, extraClasses: ['errorMsg']});
+          this._common.spinnerStop();
         });
 
     }

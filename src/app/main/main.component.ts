@@ -38,10 +38,12 @@ export class MainComponent implements OnInit {
     this.contacts$.subscribe(val => {
       this.contacts = val;
       // console.log(this.contacts);
+      this._common.spinnerStop();
     });
     this.contactId$.subscribe(val => {
       // console.log(`Model close. Contact: ${JSON.stringify(val, null, 2)}`);
       this.select(val);
+      this._common.spinnerStop();
     });
   }
 
@@ -50,6 +52,7 @@ export class MainComponent implements OnInit {
   }
 
   select(contact: app.Contact): void {
+    this._common.spinnerStart();
     this.selectContactId = contact.id;
     this._router.navigate(['main', {outlets: {'content': ['contact', this.selectContactId]}}]);
   }

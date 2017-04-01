@@ -1,4 +1,3 @@
-import { createLanguageService } from 'tslint/lib';
 import { Route, ActivatedRoute } from '@angular/router';
 import { GuardService } from './common/services/guard.service';
 

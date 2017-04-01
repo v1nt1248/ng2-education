@@ -24,11 +24,17 @@ export class FileUploadComponent implements OnInit {
     const file: File = $event.target.files[0];
     const myReader: FileReader = new FileReader();
     myReader.readAsDataURL(file);
-    myReader.onloadend = (ev) => {
+    myReader.onload = (ev) => {
+      // console.log((ev.target as any).result);
       if (file.size <= 1048576) {
-        const imgData = this.resizeImage(myReader.result, this.sizeImg);
-        // console.log(imgData);
-        this.dataUrl.emit(imgData);
+        const src = (ev.target as any).result;
+        const tmpImg = new Image();
+        tmpImg.src = src;
+        tmpImg.onload = () => {
+          const imgData = this.resizeImage(tmpImg, this.sizeImg);
+          // console.log(imgData);
+          this.dataUrl.emit(imgData);
+        }
       } else {
         this.dataUrl = null;
         const errorTxt = 'Файл не больше 1Мб!';
@@ -40,17 +46,15 @@ export class FileUploadComponent implements OnInit {
 
   /**
    * функция изменения размера картинки
-   * @param imageBase64 {string} - картинка в base64
+   * @param image {HTMLImageElement} - картинка
    * @param targetSize {number} - целевой размер меньшей стороны картинки
    * @returns {string} - картинка с изменненным размеров в base64
    */
-  private resizeImage(imageBase64: string, targetSize: number): string {
-    const tempImg = new Image();
-    tempImg.src = imageBase64;
+  private resizeImage(image: HTMLImageElement, targetSize: number): string {
     // расчет новых размеров изображения
     let tempImgSize = {
-      width: tempImg.width,
-      height: tempImg.height
+      width: image.width,
+      height: image.height
     };
     if (tempImgSize.width > tempImgSize.height) {
       tempImgSize.width = tempImgSize.width * targetSize / tempImgSize.height;
@@ -64,7 +68,7 @@ export class FileUploadComponent implements OnInit {
     canvas.width = tempImgSize.width;
     canvas.height = tempImgSize.height;
     const ctx = canvas.getContext('2d');
-    ctx.drawImage(tempImg, 0, 0, tempImgSize.width, tempImgSize.height);
+    ctx.drawImage(image, 0, 0, tempImgSize.width, tempImgSize.height);
     const dataUrl = canvas.toDataURL();
 
     return dataUrl;

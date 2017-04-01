@@ -10,7 +10,7 @@ export class GuardService implements CanActivate{
     private _common: CommonService
   ) { }
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    /*console.log(route);
+    console.log(route);
     console.log(state);
     if (!!this._common.getUserData()) {
       if (!!this._common.getUserData().uid) {
@@ -19,8 +19,8 @@ export class GuardService implements CanActivate{
     }
 
     this._router.navigate(['/login']);
-    return false;*/
-    return true;
+    return false;
+    // return true;
   }
 
 }
